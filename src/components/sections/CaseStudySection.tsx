@@ -52,15 +52,15 @@ export const CaseStudySection = () => {
               <div>
                 <Quote className="w-10 h-10 text-primary mb-6" />
                 <h3 className="text-2xl md:text-3xl font-bold mb-6 leading-tight">
-                  Multi-Agent Architecture for U.S. Startup
+                  Multi-Agent Architecture for U.S. SaaS Startup
                 </h3>
                 <p className="text-gray-300 text-lg leading-relaxed mb-6">
                   Delivered an <span className="text-primary font-medium">MCP-driven</span> multi-agent 
-                  architecture for a U.S. startup, integrating{' '}
-                  <span className="text-secondary font-medium">LangChain</span> +{' '}
-                  <span className="text-accent font-medium">ADK</span> +{' '}
-                  <span className="text-primary font-medium">CrewAI</span> to coordinate task 
-                  automation across teams.
+                  architecture for a U.S. SaaS startup, integrating{' '}
+                  <span className="text-secondary font-medium">LangChain</span> orchestration with{' '}
+                  <span className="text-accent font-medium">Google ADK</span> for cloud-native deployment and{' '}
+                  <span className="text-primary font-medium">custom MCP servers</span> to coordinate task 
+                  automation across internal teams and external APIs.
                 </p>
                 <div className="flex items-center gap-3 text-sm text-gray-400">
                   <div className="flex items-center gap-1">
@@ -128,7 +128,7 @@ export const CaseStudySection = () => {
             >
               <p className="text-sm text-gray-500 mb-3">Technologies Used:</p>
               <div className="flex flex-wrap gap-2">
-                {['LangChain', 'Google ADK', 'CrewAI', 'MCP', 'Python', 'TypeScript', 'Docker'].map((tech) => (
+                {['LangChain', 'LangGraph', 'Google ADK', 'MCP', 'Python', 'TypeScript', 'Google Cloud'].map((tech) => (
                   <span
                     key={tech}
                     className="px-3 py-1 text-xs rounded-full bg-white/5 border border-white/10 text-gray-300"

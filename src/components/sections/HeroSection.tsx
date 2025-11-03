@@ -46,7 +46,7 @@ export const HeroSection = () => {
             className="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full glass-effect border border-primary/20"
           >
             <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-sm text-gray-300">Multi-Agent Orchestration Specialists</span>
+            <span className="text-sm text-gray-300">Orchestrating the Future of AI Collaboration</span>
           </motion.div>
 
           {/* Headline */}
@@ -56,8 +56,8 @@ export const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-5xl md:text-7xl font-bold mb-6 leading-tight"
           >
-            We Orchestrate{' '}
-            <span className="gradient-text">Intelligent Agents</span>
+            Build. Orchestrate.{' '}
+            <span className="gradient-text">Integrate</span>
           </motion.h1>
 
           {/* Sub-headline */}
@@ -67,13 +67,13 @@ export const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg md:text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed"
           >
-            Agentic Orch builds the connective tissue between{' '}
-            <span className="text-primary font-medium">LangChain</span>,{' '}
-            <span className="text-secondary font-medium">ADK</span>,{' '}
-            <span className="text-accent font-medium">MCP</span>,{' '}
-            <span className="text-primary font-medium">Swarm</span>,{' '}
-            <span className="text-secondary font-medium">CrewAI</span>, and beyond —
-            enabling adaptive, multi-agent intelligence for startups and enterprises.
+            Agentic Orch specializes in orchestration and integration for agentic systems —
+            leveraging{' '}
+            <span className="text-primary font-medium">LangChain</span> for open-source workflows,{' '}
+            <span className="text-secondary font-medium">Google ADK</span> for cloud-native orchestration,
+            and{' '}
+            <span className="text-accent font-medium">MCP</span> for seamless API integrations —
+            enabling production-ready multi-agent intelligence for startups and enterprises.
           </motion.p>
 
           {/* CTAs */}
@@ -100,9 +100,9 @@ export const HeroSection = () => {
             className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8"
           >
             {[
-              { label: 'Frameworks', value: '8+' },
-              { label: 'Agent Types', value: '25+' },
-              { label: 'Integrations', value: '50+' },
+              { label: 'Core Frameworks', value: '3' },
+              { label: 'Agent Workflows', value: '25+' },
+              { label: 'MCP Servers Built', value: '15+' },
               { label: 'Response Time', value: '<24h' },
             ].map((stat, index) => (
               <div key={index} className="text-center">

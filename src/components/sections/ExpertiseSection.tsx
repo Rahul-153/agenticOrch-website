@@ -6,32 +6,32 @@ import { Network, Database, Brain, Workflow, Activity } from 'lucide-react';
 const services = [
   {
     icon: Network,
-    title: 'Agentic Orchestration Design',
-    description: 'Designing reasoning loops, delegation logic, and cross-agent collaboration using ADK + AutoGen + CrewAI.',
+    title: 'LangChain Orchestration Stack',
+    description: 'Building and managing agent workflows with LangChain, defining multi-agent coordination with LangGraph, and monitoring interactions with LangSmith.',
     gradient: 'from-primary/20 to-secondary/20',
   },
   {
     icon: Database,
-    title: 'MCP Integrations',
-    description: 'Custom Model Context Protocol servers that connect LLMs to enterprise APIs and private data.',
+    title: 'Google ADK Integration',
+    description: 'Deploying native agent orchestration within Google Cloud and Workspace environments using Google Agent Development Kit for cloud-optimized workflows.',
     gradient: 'from-secondary/20 to-accent/20',
   },
   {
     icon: Brain,
-    title: 'LangChain & LlamaIndex Pipelines',
-    description: 'Context-aware retrieval, memory, and reasoning frameworks for adaptive agents.',
+    title: 'Model Context Protocol (MCP)',
+    description: 'Building and managing custom MCP servers to connect AI agents to external APIs, third-party tools, and enterprise data sources.',
     gradient: 'from-accent/20 to-primary/20',
   },
   {
     icon: Workflow,
-    title: 'OpenAI Swarm & Semantic Kernel Ops',
-    description: 'Multi-agent planning, tool-use orchestration, and execution monitoring.',
+    title: 'Agent Workflow Design',
+    description: 'Designing reasoning loops, delegation logic, and cross-agent collaboration patterns for adaptive, production-ready systems.',
     gradient: 'from-primary/20 to-accent/20',
   },
   {
     icon: Activity,
-    title: 'AI Workflow Observability',
-    description: 'Dashboards tracking latency, success rates, and conversation context in real time.',
+    title: 'Monitoring & Observability',
+    description: 'Implementing dashboards and tracing systems to track agent performance, latency, success rates, and conversation context in real time.',
     gradient: 'from-secondary/20 to-primary/20',
   },
 ];
@@ -60,7 +60,7 @@ export const ExpertiseSection = () => {
             What We <span className="gradient-text">Build</span>
           </h2>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-            End-to-end agentic infrastructure that transforms isolated AI tools into coordinated intelligent systems.
+            Specialized orchestration and integration services using LangChain, Google ADK, and MCP to build production-ready agentic systems.
           </p>
         </motion.div>
 
@@ -107,9 +107,9 @@ export const ExpertiseSection = () => {
         >
           <div className="glass-effect rounded-2xl p-8 border border-primary/20 max-w-3xl mx-auto">
             <p className="text-lg text-gray-300">
-              <span className="text-primary font-semibold">Production-ready</span> systems with{' '}
-              <span className="text-secondary font-semibold">enterprise-grade</span> security,
-              observability, and scalability built in from day one.
+              <span className="text-primary font-semibold">Production-ready</span> orchestration with{' '}
+              <span className="text-secondary font-semibold">enterprise-grade</span> observability,
+              security, and scalability — purpose-built for LangChain, Google ADK, and MCP workflows.
             </p>
           </div>
         </motion.div>

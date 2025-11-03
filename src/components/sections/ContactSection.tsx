@@ -64,10 +64,10 @@ export const ContactSection = () => {
           </div>
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Let's Build Your{' '}
-            <span className="gradient-text">Agentic Infrastructure</span>
+            <span className="gradient-text">Orchestration Layer</span>
           </h2>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-            Schedule a 30-minute call or drop us a note. We reply within 24 hours.
+            Schedule a 30-minute call to discuss LangChain, Google ADK, or MCP integration. We reply within 24 hours.
           </p>
         </motion.div>
 

@@ -47,18 +47,14 @@ export const AboutSection = () => {
             className="space-y-6 text-lg text-gray-300 leading-relaxed"
           >
             <p>
-              Agentic Orch engineers the <span className="text-primary font-medium">invisible layer</span> that lets AI agents communicate, reason, and act together.
+              Agentic Orch engineers the <span className="text-primary font-medium">orchestration and integration layer</span> that enables AI agents to communicate, reason, and execute together.
             </p>
             <p>
-              We specialize in unifying diverse agentic frameworks —{' '}
-              <span className="text-secondary font-medium">LangChain</span>,{' '}
-              <span className="text-primary font-medium">ADK</span>,{' '}
-              <span className="text-accent font-medium">MCP</span>,{' '}
-              <span className="text-secondary font-medium">Swarm</span>,{' '}
-              <span className="text-primary font-medium">CrewAI</span>,{' '}
-              <span className="text-accent font-medium">AutoGen</span>,{' '}
-              <span className="text-secondary font-medium">Semantic Kernel</span> —
-              into cohesive, production-ready systems.
+              We specialize in three core pillars —{' '}
+              <span className="text-secondary font-medium">LangChain (with LangGraph and LangSmith)</span> for open-source agent orchestration and monitoring,{' '}
+              <span className="text-primary font-medium">Google Agent Development Kit (ADK)</span> for cloud-native orchestration within Google Cloud and Workspace environments,{' '}
+              and <span className="text-accent font-medium">Model Context Protocol (MCP)</span> for building custom API integrations and external tool connectivity —
+              delivering cohesive, production-ready agentic systems.
             </p>
           </motion.div>
 
@@ -73,13 +69,10 @@ export const AboutSection = () => {
               <div className="flex flex-wrap justify-center gap-4 md:gap-6">
                 {[
                   'LangChain',
+                  'LangGraph',
+                  'LangSmith',
                   'Google ADK',
-                  'MCP',
-                  'OpenAI Swarm',
-                  'CrewAI',
-                  'AutoGen',
-                  'LlamaIndex',
-                  'Semantic Kernel',
+                  'Model Context Protocol',
                 ].map((framework, index) => (
                   <motion.div
                     key={framework}
