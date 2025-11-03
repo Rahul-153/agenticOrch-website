@@ -67,13 +67,10 @@ export const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg md:text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed"
           >
-            Agentic Orch specializes in orchestration and integration for agentic systems —
-            leveraging{' '}
-            <span className="text-primary font-medium">LangChain</span> for open-source workflows,{' '}
-            <span className="text-secondary font-medium">Google ADK</span> for cloud-native orchestration,
-            and{' '}
-            <span className="text-accent font-medium">MCP</span> for seamless API integrations —
-            enabling production-ready multi-agent intelligence for startups and enterprises.
+            Specialized orchestration and integration for agentic systems —{' '}
+            <span className="text-primary font-medium">LangChain</span> for workflows,{' '}
+            <span className="text-secondary font-medium">Google ADK</span> for cloud,{' '}
+            <span className="text-accent font-medium">MCP</span> for APIs.
           </motion.p>
 
           {/* CTAs */}

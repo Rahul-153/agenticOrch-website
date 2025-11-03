@@ -55,12 +55,12 @@ export const CaseStudySection = () => {
                   Multi-Agent Architecture for U.S. SaaS Startup
                 </h3>
                 <p className="text-gray-300 text-lg leading-relaxed mb-6">
-                  Delivered an <span className="text-primary font-medium">MCP-driven</span> multi-agent 
-                  architecture for a U.S. SaaS startup, integrating{' '}
-                  <span className="text-secondary font-medium">LangChain</span> orchestration with{' '}
-                  <span className="text-accent font-medium">Google ADK</span> for cloud-native deployment and{' '}
-                  <span className="text-primary font-medium">custom MCP servers</span> to coordinate task 
-                  automation across internal teams and external APIs.
+                  Built an <span className="text-primary font-medium">MCP-driven</span> multi-agent 
+                  system integrating{' '}
+                  <span className="text-secondary font-medium">LangChain</span> orchestration,{' '}
+                  <span className="text-accent font-medium">Google ADK</span> for cloud deployment, and{' '}
+                  <span className="text-primary font-medium">custom MCP servers</span> — coordinating 
+                  task automation across teams and external APIs.
                 </p>
                 <div className="flex items-center gap-3 text-sm text-gray-400">
                   <div className="flex items-center gap-1">

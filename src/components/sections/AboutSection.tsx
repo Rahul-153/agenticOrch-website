@@ -47,14 +47,13 @@ export const AboutSection = () => {
             className="space-y-6 text-lg text-gray-300 leading-relaxed"
           >
             <p>
-              Agentic Orch engineers the <span className="text-primary font-medium">orchestration and integration layer</span> that enables AI agents to communicate, reason, and execute together.
+              Agentic Orch engineers the <span className="text-primary font-medium">orchestration layer</span> that enables AI agents to communicate, reason, and execute together.
             </p>
             <p>
-              We specialize in three core pillars —{' '}
-              <span className="text-secondary font-medium">LangChain (with LangGraph and LangSmith)</span> for open-source agent orchestration and monitoring,{' '}
-              <span className="text-primary font-medium">Google Agent Development Kit (ADK)</span> for cloud-native orchestration within Google Cloud and Workspace environments,{' '}
-              and <span className="text-accent font-medium">Model Context Protocol (MCP)</span> for building custom API integrations and external tool connectivity —
-              delivering cohesive, production-ready agentic systems.
+              Three core pillars —{' '}
+              <span className="text-secondary font-medium">LangChain</span> (LangGraph, LangSmith) for open-source orchestration,{' '}
+              <span className="text-primary font-medium">Google ADK</span> for Google Cloud environments,{' '}
+              <span className="text-accent font-medium">MCP</span> for API connectivity.
             </p>
           </motion.div>
 
