@@ -67,10 +67,10 @@ export const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg md:text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed"
           >
-            Specialized orchestration and integration for agentic systems —{' '}
-            <span className="text-primary font-medium">LangChain</span> for workflows,{' '}
-            <span className="text-secondary font-medium">Google ADK</span> for cloud,{' '}
-            <span className="text-accent font-medium">MCP</span> for APIs.
+            Specialized orchestration and integration for agentic systems — using{' '}
+            <span className="text-primary font-medium">LangChain</span> and{' '}
+            <span className="text-secondary font-medium">Google ADK</span> for orchestration, and{' '}
+            <span className="text-accent font-medium">MCP</span> for API connectivity.
           </motion.p>
 
           {/* CTAs */}

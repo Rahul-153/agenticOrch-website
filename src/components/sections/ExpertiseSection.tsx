@@ -13,7 +13,7 @@ const services = [
   {
     icon: Database,
     title: 'Google ADK',
-    description: 'Cloud-native agent orchestration within Google Cloud and Workspace environments.',
+    description: 'Agent orchestration framework for cloud-native, production-grade systems within Google Cloud or hybrid environments.',
     gradient: 'from-secondary/20 to-accent/20',
   },
   {

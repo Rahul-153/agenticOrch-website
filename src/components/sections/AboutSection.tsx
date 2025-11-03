@@ -51,9 +51,9 @@ export const AboutSection = () => {
             </p>
             <p>
               Three core pillars —{' '}
-              <span className="text-secondary font-medium">LangChain</span> (LangGraph, LangSmith) for open-source orchestration,{' '}
-              <span className="text-primary font-medium">Google ADK</span> for Google Cloud environments,{' '}
-              <span className="text-accent font-medium">MCP</span> for API connectivity.
+              <span className="text-secondary font-medium">LangChain</span> (with LangGraph, LangSmith) and{' '}
+              <span className="text-primary font-medium">Google ADK</span> for agent orchestration and workflow management across open-source and Google Cloud ecosystems, and{' '}
+              <span className="text-accent font-medium">MCP</span> for seamless API connectivity and integrations.
             </p>
           </motion.div>
 
