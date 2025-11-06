@@ -20,24 +20,54 @@ export const ContactSection = () => {
     // Get form data
     const form = e.currentTarget;
     const formData = new FormData(form);
+    
+    // Create email body
+    const name = formData.get('name');
+    const email = formData.get('email');
+    const company = formData.get('company');
+    const budget = formData.get('budget');
+    const project = formData.get('project');
 
     try {
-      // Replace with your Formspree endpoint
-      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+      // Using Web3Forms - a free form endpoint service
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        body: formData,
         headers: {
+          'Content-Type': 'application/json',
           'Accept': 'application/json'
-        }
+        },
+        body: JSON.stringify({
+          access_key: '965ed8e0-4fc8-4845-9836-7d0a9a9a4a75',
+          name: name,
+          email: email,
+          company: company || 'Not provided',
+          budget: budget || 'Not provided',
+          message: project,
+          to: 'rupendrarkrishna8@gmail.com',
+          subject: `New Contact from ${name} - Agentic Orch`
+        })
       });
 
       if (response.ok) {
         setIsSubmitted(true);
         form.reset();
         setTimeout(() => setIsSubmitted(false), 5000);
+      } else {
+        // Fallback to mailto if API fails
+        const mailtoLink = `mailto:rupendrarkrishna8@gmail.com?subject=Agentic Orch Contact - ${name}&body=Name: ${name}%0D%0AEmail: ${email}%0D%0ACompany: ${company || 'N/A'}%0D%0ABudget: ${budget || 'N/A'}%0D%0A%0D%0AProject Details:%0D%0A${project}`;
+        window.location.href = mailtoLink;
+        setIsSubmitted(true);
+        form.reset();
+        setTimeout(() => setIsSubmitted(false), 3000);
       }
     } catch (error) {
       console.error('Error submitting form:', error);
+      // Fallback to mailto
+      const mailtoLink = `mailto:rupendrarkrishna8@gmail.com?subject=Agentic Orch Contact - ${name}&body=Name: ${name}%0D%0AEmail: ${email}%0D%0ACompany: ${company || 'N/A'}%0D%0ABudget: ${budget || 'N/A'}%0D%0A%0D%0AProject Details:%0D%0A${project}`;
+      window.location.href = mailtoLink;
+      setIsSubmitted(true);
+      form.reset();
+      setTimeout(() => setIsSubmitted(false), 3000);
     } finally {
       setIsSubmitting(false);
     }
@@ -195,23 +225,12 @@ export const ContactSection = () => {
             className="mt-8 text-center"
           >
             <p className="text-gray-400 mb-4">Or reach us directly:</p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <a
-                href="mailto:hello@agenticorch.ai"
-                className="text-primary hover:text-primary-hover transition-colors"
-              >
-                hello@agenticorch.ai
-              </a>
-              <span className="hidden sm:block text-gray-600">•</span>
-              <a
-                href="https://calendly.com/agenticorch"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-secondary hover:text-secondary-hover transition-colors"
-              >
-                Book a Calendly
-              </a>
-            </div>
+            <a
+              href="mailto:rupendra@agenticorch.ai"
+              className="text-primary hover:text-primary-hover transition-colors text-lg"
+            >
+              rupendra@agenticorch.ai
+            </a>
           </motion.div>
         </motion.div>
       </div>
