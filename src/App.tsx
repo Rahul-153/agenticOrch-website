@@ -1,20 +1,23 @@
-import { HeroSection } from '@/components/sections/HeroSection';
-import { AboutSection } from '@/components/sections/AboutSection';
-import { ExpertiseSection } from '@/components/sections/ExpertiseSection';
-import { CaseStudySection } from '@/components/sections/CaseStudySection';
-import { ContactSection } from '@/components/sections/ContactSection';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Navigation } from '@/components/Navigation';
+import { HomePage } from '@/pages/HomePage';
+import { BlogPage } from '@/pages/BlogPage';
+import { BlogPostPage } from '@/pages/BlogPostPage';
 import { Footer } from '@/components/sections/Footer';
 
 function App() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <HeroSection />
-      <AboutSection />
-      <ExpertiseSection />
-      <CaseStudySection />
-      <ContactSection />
-      <Footer />
-    </div>
+    <Router>
+      <div className="min-h-screen bg-background text-foreground">
+        <Navigation />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog/:slug" element={<BlogPostPage />} />
+        </Routes>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 

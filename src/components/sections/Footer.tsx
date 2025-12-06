@@ -1,4 +1,5 @@
 import { Linkedin, Mail, FileText } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -24,24 +25,24 @@ export const Footer = () => {
             </h4>
             <ul className="space-y-2">
               <li>
-                <a href="#about" className="text-gray-400 hover:text-primary transition-colors text-sm">
+                <a href="/#about" className="text-gray-400 hover:text-primary transition-colors text-sm">
                   About
                 </a>
               </li>
               <li>
-                <a href="#services" className="text-gray-400 hover:text-primary transition-colors text-sm">
+                <a href="/#services" className="text-gray-400 hover:text-primary transition-colors text-sm">
                   Services
                 </a>
               </li>
               <li>
-                <a href="#contact" className="text-gray-400 hover:text-primary transition-colors text-sm">
+                <a href="/#contact" className="text-gray-400 hover:text-primary transition-colors text-sm">
                   Contact
                 </a>
               </li>
               <li>
-                <a href="/privacy" className="text-gray-400 hover:text-primary transition-colors text-sm">
-                  Privacy Policy
-                </a>
+                <Link to="/blog" className="text-gray-400 hover:text-primary transition-colors text-sm">
+                  Blog
+                </Link>
               </li>
             </ul>
           </div>
@@ -68,13 +69,13 @@ export const Footer = () => {
               >
                 <Mail className="w-5 h-5 text-gray-400 hover:text-primary transition-colors" />
               </a>
-              <a
-                href="/blog"
+              <Link
+                to="/blog"
                 className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 hover:border-primary/50 flex items-center justify-center transition-all hover:scale-110"
                 aria-label="Blog"
               >
                 <FileText className="w-5 h-5 text-gray-400 hover:text-primary transition-colors" />
-              </a>
+              </Link>
             </div>
           </div>
         </div>

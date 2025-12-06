@@ -41,7 +41,7 @@ export const ExpertiseSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="py-24 relative">
+    <section id="services" ref={ref} className="py-24 relative">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
       

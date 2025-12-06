@@ -69,7 +69,7 @@ export const CaseStudySection = () => {
   };
 
   return (
-    <section ref={ref} className="py-24 relative overflow-hidden">
+    <section id="case-studies" ref={ref} className="py-24 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-secondary/10 via-transparent to-primary/10" />
