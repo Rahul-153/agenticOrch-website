@@ -2,7 +2,6 @@ import type { BlogPost } from '@/data/blogPosts';
 import { Calendar, Clock, ArrowLeft, Tag } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
-import { useEffect } from 'react';
 
 interface BlogContentProps {
   post: BlogPost;
