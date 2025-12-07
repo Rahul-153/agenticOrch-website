@@ -29,6 +29,13 @@ export function Navigation() {
     setIsMobileMenuOpen(false);
     
     if (path.startsWith('/#')) {
+      // If on a different page, navigate to home first
+      if (location.pathname !== '/') {
+        window.location.href = path;
+        return;
+      }
+      
+      // If on home page, scroll to the section
       const element = document.querySelector(path.substring(1));
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
