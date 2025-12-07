@@ -25,7 +25,7 @@ For a while I had been exploring different agentic frameworks—testing ideas, b
 
 That question eventually led me to the **Microsoft Agent Framework (MAF)**, a multi-agent orchestration system designed to help developers break complex tasks into cooperating agents. To understand what the framework could do in a realistic scenario, I decided to build a small but complete example: an intelligent customer-support assistant capable of interpreting a user question, choosing a database, generating SQL, validating it, executing it, and returning a readable response.
 
-The following sections walk through that journey—not just the code or the workflow, but also how this architectural shift changes the way we think about building support systems. For readers who want to explore the implementation in detail, **the full working code is available in the GitHub repository** (linked at the end).
+The following sections walk through that journey—not just the code or the workflow, but also how this architectural shift changes the way we think about building support systems. For readers who want to explore the implementation in detail, **the full working code is available on [GitHub](https://github.com/rupendra-agenticorch/main_website)** (linked at the end).
 
 ---
 
@@ -344,7 +344,7 @@ async def main():
 
 Building support automation used to involve building an entire orchestration layer by hand. Multi-agent frameworks such as **Microsoft Agent Framework** reorganize that process into small, understandable units that work together. This structure reduces development time, improves maintainability, and enables teams of any size to build intelligent support workflows without rewriting the same infrastructure.
 
-For anyone curious to explore or adapt this project, the **complete codebase is available on GitHub**, including the workflow graph, agent definitions, and running examples.
+For anyone curious to explore or adapt this project, the **complete codebase is available on [GitHub](https://github.com/rupendra-agenticorch/main_website)**, including the workflow graph, agent definitions, and running examples.
 
 Ready to build your intelligent support system? [Get in touch](/contact) to discuss how multi-agent orchestration can transform your operations.
     `,
