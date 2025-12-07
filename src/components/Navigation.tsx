@@ -86,7 +86,7 @@ export function Navigation() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 rounded-lg hover:bg-accent"
+            className="md:hidden p-2 rounded-lg hover:bg-primary/10 transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -100,14 +100,14 @@ export function Navigation() {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="md:hidden py-4 space-y-2 border-t border-border">
+          <div className="md:hidden py-4 space-y-1 border-t border-border bg-background/95 backdrop-blur-sm">
             {navLinks.map((link) => (
               link.path.startsWith('/#') ? (
                 <a
                   key={link.name}
                   href={link.path}
                   onClick={() => handleNavClick(link.path)}
-                  className="block px-4 py-2 rounded-lg hover:bg-accent transition-colors cursor-pointer"
+                  className="block px-4 py-3 text-sm font-medium rounded-lg hover:bg-primary/10 hover:text-primary transition-colors cursor-pointer"
                 >
                   {link.name}
                 </a>
@@ -116,8 +116,10 @@ export function Navigation() {
                   key={link.name}
                   to={link.path}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`block px-4 py-2 rounded-lg hover:bg-accent transition-colors ${
-                    location.pathname === link.path ? 'text-primary bg-accent' : ''
+                  className={`block px-4 py-3 text-sm font-medium rounded-lg transition-colors ${
+                    location.pathname === link.path 
+                      ? 'text-primary bg-primary/10' 
+                      : 'hover:bg-primary/10 hover:text-primary'
                   }`}
                 >
                   {link.name}
