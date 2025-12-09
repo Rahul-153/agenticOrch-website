@@ -68,8 +68,9 @@ export const HeroSection = () => {
             className="text-lg md:text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed"
           >
             Specialized orchestration and integration for agentic systems — using{' '}
-            <span className="text-primary font-medium">LangChain</span> and{' '}
-            <span className="text-secondary font-medium">Google ADK</span> for orchestration, and{' '}
+            <span className="text-primary font-medium">LangChain</span>,{' '}
+            <span className="text-secondary font-medium">Google ADK</span> and{' '}
+            <span className="text-secondary font-medium">Microsoft Agent Framework</span> for orchestration, and{' '}
             <span className="text-accent font-medium">MCP</span> for API connectivity.
           </motion.p>
 
@@ -98,7 +99,7 @@ export const HeroSection = () => {
             className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8"
           >
             {[
-              { label: 'Core Frameworks', value: '3' },
+              { label: 'Core Frameworks', value: '4' },
               { label: 'Agent Workflows', value: '25+' },
               { label: 'MCP Servers Built', value: '15+' },
               { label: 'Response Time', value: '<24h' },
