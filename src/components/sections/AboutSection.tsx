@@ -50,9 +50,10 @@ export const AboutSection = () => {
               Agentic Orch engineers the <span className="text-primary font-medium">orchestration layer</span> that enables AI agents to communicate, reason, and execute together.
             </p>
             <p>
-              Three core pillars —{' '}
-              <span className="text-secondary font-medium">LangChain</span> (with LangGraph, LangSmith) and{' '}
-              <span className="text-primary font-medium">Google ADK</span> for agent orchestration and workflow management across open-source and Google Cloud ecosystems, and{' '}
+              Four core pillars —{' '}
+              <span className="text-secondary font-medium">LangChain</span> (with LangGraph, LangSmith),{' '}
+              <span className="text-primary font-medium">Google ADK</span> and{' '}
+              <span className="text-primary font-medium">Microsoft Agent Framework</span> for agent orchestration and workflow management across open-source and Google Cloud ecosystems, and{' '}
               <span className="text-accent font-medium">MCP</span> for seamless API connectivity and integrations.
             </p>
           </motion.div>
@@ -71,6 +72,7 @@ export const AboutSection = () => {
                   'LangGraph',
                   'LangSmith',
                   'Google ADK',
+                  'Microsoft Agent Framework',
                   'Model Context Protocol',
                 ].map((framework, index) => (
                   <motion.div
