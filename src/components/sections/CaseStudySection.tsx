@@ -95,7 +95,7 @@ export const CaseStudySection = () => {
             <span className="font-semibold text-white">Multi-Agent Orchestration Projects and Industry Collaborations</span>
             <br />
             <span className="text-base mt-2 block">
-              At AgenticOrch, we're actively engaged with multiple startups and organizations in North America — building, deploying, and refining advanced AI orchestration systems using open-source LLM frameworks, LangChain, Google ADK, and MCP servers. <span className="text-primary font-medium">We're open to collaborating with teams worldwide.</span>
+              At AgenticOrch, we're actively engaged with multiple startups and organizations in North America — building, deploying, and refining advanced AI orchestration systems using open-source LLM frameworks, LangChain, Google ADK, Microsoft Agent Franework and MCP servers. <span className="text-primary font-medium">We're open to collaborating with teams worldwide.</span>
             </span>
           </p>
         </motion.div>

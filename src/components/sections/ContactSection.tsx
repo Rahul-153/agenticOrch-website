@@ -97,7 +97,7 @@ export const ContactSection = () => {
             <span className="gradient-text">Orchestration Layer</span>
           </h2>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-            Discuss LangChain, Google ADK, or MCP integration. 24-hour response time.
+            Discuss LangChain, Google ADK, Microsoft Agent Framework or MCP integration. 24-hour response time.
           </p>
         </motion.div>
 
