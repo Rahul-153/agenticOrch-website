@@ -90,11 +90,34 @@ export function BlogContent({ post }: BlogContentProps) {
                 <code className="bg-primary/10 px-1.5 py-0.5 rounded text-sm">{children}</code>
               );
             },
-            a: ({ href, children }) => (
-              <a href={href} className="text-primary hover:underline">
-                {children}
-              </a>
-            ),
+            a: ({ href, children }) => {
+              // Check if it's an internal link to contact
+              if (href === '/contact' || href === '#contact') {
+                return (
+                  <a
+                    href="#contact"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigate('/');
+                      setTimeout(() => {
+                        const element = document.querySelector('#contact');
+                        if (element) {
+                          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                      }, 300);
+                    }}
+                    className="text-primary hover:underline cursor-pointer"
+                  >
+                    {children}
+                  </a>
+                );
+              }
+              return (
+                <a href={href} className="text-primary hover:underline" target={href?.startsWith('http') ? '_blank' : undefined} rel={href?.startsWith('http') ? 'noopener noreferrer' : undefined}>
+                  {children}
+                </a>
+              );
+            },
           }}
         >
           {post.content}
@@ -115,7 +138,7 @@ export function BlogContent({ post }: BlogContentProps) {
               if (element) {
                 element.scrollIntoView({ behavior: 'smooth', block: 'start' });
               }
-            }, 100);
+            }, 300);
           }}
           className="inline-block px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors cursor-pointer"
         >

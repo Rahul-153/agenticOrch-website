@@ -346,7 +346,6 @@ Building support automation used to involve building an entire orchestration lay
 
 For anyone curious to explore or adapt this project, the **complete codebase is available on [GitHub](https://github.com/AgenticOrch/customer_spport_maf.git)**, including the workflow graph, agent definitions, and running examples.
 
-Ready to build your intelligent support system? [Get in touch](/contact) to discuss how multi-agent orchestration can transform your operations.
     `,
     author: 'Rupendra Maharjan',
     date: '2025-12-05',
@@ -354,6 +353,315 @@ Ready to build your intelligent support system? [Get in touch](/contact) to disc
     category: 'Microsoft Agent Framework',
     tags: ['Microsoft Agent Framework', 'Multi-Agent', 'Customer Support', 'AI Orchestration', 'SQL'],
     imageUrl: '/blog/ai.jpg'
+  },
+  {
+    id: '2',
+    slug: 'intelligent-customer-support-part-2-orchestration-control',
+    title: 'Inside Agentic Workflows: Orchestration, Control, and Business-Grade Reliability',
+    excerpt: 'Deep dive into orchestration, control flow, and business-grade reliability in multi-agent systems. Learn how agentic workflows move from prototypes to production-ready infrastructure.',
+    content: `
+# Inside Agentic Workflows: Orchestration, Control, and Business-Grade Reliability
+
+In **Part 1** we explored why multi-agent systems are revolutionizing customer support automation — and how **Microsoft Agent Framework (MAF)** helps break complex logic into cooperating specialists.
+
+In this second installment, we go deeper.
+
+**This is where real engineering begins.**
+
+We'll explore how agentic workflows are orchestrated, how decisions are routed, how failures are handled, and why orchestration (not just models) enables enterprise-grade reliability. For readers who want to explore the implementation, you can refer to the code on **[GitHub](https://github.com/AgenticOrch/cutomer_support_maf_2.git)**.
+
+This isn't about prototyping anymore.
+
+**It's about operational AI.**
+
+---
+
+## 1. Why Orchestration Is the Real Product
+
+Getting an LLM to answer questions is only the start.
+
+Production systems must handle:
+
+- **Conditional routing**
+- **Invocation of external tools**
+- **Safe retries**
+- **Deterministic completion**
+- **Auditability and traceability**
+
+This is where **agent orchestration** becomes the core product.
+
+In our system, agents operate under a predefined workflow graph, coordinated by a central routing agent.
+
+Instead of ad-hoc calls between agents, the orchestration layer determines:
+
+- Who acts next
+- When retries are allowed
+- Which agents are terminal
+- Where errors are recovered
+
+This transforms LLMs into **reliable components of a larger system**.
+
+---
+
+## 2. The Workflow as a Directed Decision Graph
+
+The implementation uses a **handoff-centric orchestration model** via \`HandoffBuilder\`.
+
+Rather than writing procedural glue code, we declare how agents connect:
+
+\`\`\`python
+workflow = (
+    HandoffBuilder(
+        name="customer_support_workflow",
+        participants=[
+            routing_agent,
+            fraud_detection_agent,
+            db_selector_agent,
+            sql_generator_agent,
+            validator_agent,
+            sql_executor_agent
+        ],
+        description="Customer support workflow with routing, fraud detection, and database query capabilities"
+    )
+    .set_coordinator(routing_agent)
+    .add_handoff(routing_agent, [fraud_detection_agent, db_selector_agent])
+    .add_handoff(db_selector_agent, sql_generator_agent)
+    .add_handoff(sql_generator_agent, validator_agent)
+    .add_handoff(validator_agent, [sql_executor_agent, sql_generator_agent])
+    .add_handoff(sql_executor_agent, sql_generator_agent)
+    .build()
+)
+\`\`\`
+
+Each \`.add_handoff()\` defines who can hand off work to whom, ensuring:
+
+- No agent oversteps responsibility
+- Required steps are not skipped
+- Unsafe logic is blocked
+- Failures surface and are retried cleanly
+
+Here’s a high-level conceptual diagram of how queries flow in the system:
+![Workflow Execution](/blog/blog2/visualImage.png)
+
+---
+
+## 3. Key Agents and How They Work Together
+
+Our system relies on a small set of purpose-built agents, each with a specific role in the overall workflow. Together, they form a controlled pipeline from user input to final response.
+
+### Routing Agent — Classifier and Gatekeeper
+
+The Routing Agent is the first stop for every query. It doesn't solve the problem — it decides which workflow should handle it. It classifies the input and hands off to the appropriate path:
+
+\`\`\`python
+ROUTING_PROMPT = """
+You are a Triage Agent for customer support. Analyze the user's query 
+and route it to the appropriate specialist agent.
+"""
+\`\`\`
+
+Typical routing decisions include:
+
+- Orders and reports → database workflow
+- Fraud/suspicion queries → fraud agent
+- Policy questions → direct response
+
+This central routing logic provides **extension points and governance**, preventing ad-hoc agent behavior.
+
+### Database Selector — Data Context Provider
+
+Once the Routing Agent hands off to the data path, the Database Selector takes over. Its job is to discover and describe available datasets, providing structured context downstream:
+
+\`\`\`python
+list_dbs_tool = AIFunction("list_databases", func=list_dbs_func)
+get_schema_tool = AIFunction("get_schema", func=get_schema_func)
+\`\`\`
+
+This separation makes the data layer evolvable — schemas can change or expand without retraining other agents.
+
+### SQL Generation & Validation — Safe Data Access
+
+Rather than directly generating and executing SQL, we enforce a **three-step safety contract**:
+
+#### SQL Generator
+
+Converts user intent and schema into a read-only SQL query:
+
+\`\`\`python
+Prompt_nlp_sql = """
+You are an SQL Generator agent. Your job is to convert natural-language 
+questions into correct SQL for read-only access.
+"""
+\`\`\`
+
+#### Validator Agent
+
+Ensures the query is safe and read-only:
+
+\`\`\`python
+Prompt_validator = """
+Validate the SQL query: disallow non-SELECT,
+multi-statements, and enforce LIMIT <= 1000.
+"""
+\`\`\`
+
+#### SQL Executor
+
+Executes only the validated query:
+
+\`\`\`python
+run_sql_tool = AIFunction("run_sql", func=run_sql_func)
+\`\`\`
+
+If validation fails, the workflow hands control back to the SQL Generator with error context — no hard-coded retry loops are needed.
+
+### Terminal Agents — Clear Endpoints
+
+Some agents conclude the workflow with a definite response. These are called **terminal agents** because they represent the final step in a workflow execution.
+
+Two key terminal agents in our system:
+
+- **Fraud Detection Agent**: This agent provides direct answers to security-related queries. When a user reports suspicious activity, this agent handles the entire response and terminates the workflow with actionable guidance.
+
+- **SQL Executor (success)**: After successfully executing a validated SQL query, this agent returns the query results to the user and completes the workflow. This marks the end of the database inquiry path.
+
+Terminal agents produce the final output and stop the workflow cleanly, which is essential to avoid infinite loops and ensure predictable execution.
+
+---
+
+## 4. Structured Observability — Events Over Logs
+
+Instead of unstructured logs, every agent interaction emits structured events:
+
+\`\`\`python
+if isinstance(event, AgentRunEvent):
+    print(f"{event.executor_id}: {event.data}")
+\`\`\`
+
+This enables:
+
+- Traceable decision flow
+- Per-agent output inspection
+- Clear success/failure markers
+
+For business use cases, this means better:
+
+- **Compliance and auditability**
+- **Debugging and support**
+- **Performance and cost tracking**
+
+This event-driven observability turns AI pipelines into **operational systems**, not experiments.
+
+---
+
+## 5. Why This Matters for Real Businesses
+
+This orchestration-first design unlocks measurable benefits:
+
+### Support Teams
+- Faster average first response times
+- Reduced escalations
+- Consistent messaging
+
+### Engineering Teams
+- Smaller, modular components
+- Independent testing per agent
+- Easier regression testing
+
+### Enterprises
+- Governance and compliance built in
+- Predictable behavior across regions & products
+- Easy insertion of risk checks, human review, and audit hooks
+
+This architecture **scales in complexity**, not just traffic.
+
+---
+
+## 6. Differences Between Handoff and Agent-as-Tools
+
+Although agent-as-tools might look similar to handoffs, there are key differences in how they operate:
+
+### Control Flow
+
+In **Handoff Orchestration**, control is explicitly passed from one agent to another. Each agent takes full responsibility for its part of the workflow before handing off to the next agent. Think of it like a relay race where each runner completes their leg and passes the baton.
+
+In **Agent-as-Tools**, a primary agent remains in charge throughout. It delegates specific subtasks to other agents but retains overall control of the process. It's more like a project manager who assigns tasks to team members but stays responsible for the entire project.
+
+### Task Ownership
+
+With **Handoff Orchestration**, when an agent receives a handoff, it completely owns that task. The previous agent is no longer involved, and the receiving agent is fully accountable for what happens next.
+
+With **Agent-as-Tools**, the primary agent always retains ownership. Other agents are simply tools it uses to accomplish subtasks, but the primary agent maintains responsibility throughout.
+
+### Context Management
+
+In **Handoff Orchestration**, the full context—all the information gathered so far—flows with each handoff. The receiving agent gets everything it needs to make informed decisions independently.
+
+In **Agent-as-Tools**, the primary agent manages what context to share. It selectively provides information to each tool-agent, maintaining control over what data flows where.
+
+Handoff patterns yield **clearer responsibilities**, **stronger guarantees**, and **easier auditing** — critical at enterprise scale.
+
+---
+
+## 7. Example Query Flow and Response
+
+Let's walk through simple, real examples:
+
+### User Query 1:
+**"Give the total number of tickets categorised by gender"**
+
+The system routes through:
+1. Routing Agent → Database workflow
+2. Database Selector → Identifies tickets database
+3. SQL Generator → Creates aggregation query
+4. Validator → Confirms read-only and safe
+5. SQL Executor → Returns categorized counts
+
+![Ticket Count Example](/blog/blog2/unnamed.png)
+
+### User Query 2:
+**"I suspect a suspicious activity in my account"**
+
+The system routes through:
+1. Routing Agent → Fraud detection workflow
+2. Fraud Detection Agent → Provides security guidance (terminal)
+![Ticket Count Example](/blog/blog2/example1.png)
+
+This entire process is traceable through \`AgentRunEvent\` and \`WorkflowOutputEvent\` records, which the system can store, visualize, and audit.
+
+---
+
+## 8. The Bigger Picture: AI as Managed Systems
+
+AI systems are no longer single models that respond to prompts.
+
+**They are orchestrated teams of agents, running under explicit workflow control.**
+
+Once you move from prompts to workflows, new possibilities emerge:
+
+- Human-in-the-loop checkpoints
+- Cross-system integrations (CRMs, billing, ticketing)
+- Long-running, stateful orchestration
+- Multi-modal coordination
+
+This is where agentic AI stops being experimental — and starts becoming **infrastructure**.
+
+---
+
+## Conclusion
+
+Part 2 has shown that **orchestration is the product**. The way agents coordinate, retry, validate, and hand off determines whether your AI system is a demo or a service.
+
+In the next part, we'll explore deployment strategies, monitoring patterns, and how to scale these workflows across multiple regions and data sources.
+
+For the complete implementation, visit the **[GitHub repository](https://github.com/AgenticOrch/cutomer_support_maf_2.git)**.
+    `,
+    author: 'Rupendra Maharjan',
+    date: '2025-12-10',
+    readTime: '15 min read',
+    category: 'Microsoft Agent Framework',
+    tags: ['Microsoft Agent Framework', 'Multi-Agent', 'Orchestration', 'Workflow', 'Enterprise AI', 'Production Systems'],
+    imageUrl: '/blog/blog2/ai2.jpg'
   }
 ];
 
